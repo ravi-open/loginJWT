@@ -3,6 +3,7 @@ package controllers
 import (
 	"JWTAUTH/initializers"
 	"JWTAUTH/models"
+	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -88,7 +89,8 @@ func Login(c *gin.Context) {
 		"exp": time.Now().Add(time.Hour * 24 * 30).Unix(),
 	})
 	// Sign and get the complete encoded token as a string using the secret
-	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET ")))
+	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
+	fmt.Println(tokenString)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to Create Token ",

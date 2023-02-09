@@ -34,7 +34,7 @@ func Requireuth(c *gin.Context) {
 	})
 
 	claims, ok := token.Claims.(jwt.MapClaims)
-	fmt.Println(ok, token, token.Valid)
+	fmt.Println(ok, token, token.Valid, claims)
 	if ok && token.Valid {
 		//check the expiry of cookie
 		if float64(time.Now().Unix()) > claims["exp"].(float64) {
